@@ -1,10 +1,19 @@
-
 import React, { useEffect, useState } from 'react';
-import { View, Text, Image, ScrollView, StyleSheet, ActivityIndicator } from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  ScrollView,
+  StyleSheet,
+  ActivityIndicator,
+  TouchableOpacity
+} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 export default function RickAndMortyCharacters() {
   const [characters, setCharacters] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigation = useNavigation(); // para navegar a episodio
 
   useEffect(() => {
     fetch('https://rickandmortyapi.com/api/character')
@@ -37,6 +46,15 @@ export default function RickAndMortyCharacters() {
           <Text style={styles.name}>{character.name}</Text>
           <Text>Status: {character.status}</Text>
           <Text>Species: {character.species}</Text>
+          <Text style={styles.subtitle}>Episodios:</Text>
+          {character.episode.slice(0, 3).map((epUrl, index) => (
+            <TouchableOpacity
+              key={index}
+              onPress={() => navigation.navigate('EpisodeDetail', { episodeUrl: epUrl })}
+            >
+              <Text style={styles.link}>• Ver episodio {epUrl.split('/').pop()}</Text>
+            </TouchableOpacity>
+          ))}
         </View>
       ))}
     </ScrollView>
@@ -80,5 +98,14 @@ const styles = StyleSheet.create({
   name: {
     fontSize: 18,
     fontWeight: 'bold'
+  },
+  subtitle: {
+    fontWeight: 'bold',
+    marginTop: 10
+  },
+  link: {
+    color: 'blue',
+    textDecorationLine: 'underline',
+    marginTop: 2
   }
 });
