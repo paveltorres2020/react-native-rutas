@@ -1,6 +1,6 @@
 
 import { SafeAreaView, StyleSheet } from 'react-native';
-import RickAndMortyCharacters from './lib/reckieMartinService';
+import RickAndMortyCharacters from './screens/reckieMartinService';
 
 
 export default function App() {
