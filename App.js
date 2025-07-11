@@ -6,18 +6,9 @@ import RickAndMortyCharacters from './lib/reckieMartinService';
 export default function App() {
 
   return (
-<<<<<<< HEAD
-      <SafeAreaView style={styles.container}>
-       <RickAndMortyCharacters />
-
-     </SafeAreaView> 
-    
-    
-=======
     <View style={styles.container}>
       <Logo width={600} height={600} />
     </View>
->>>>>>> 87a44b4c07c281adb68de1456a67d139022cd0d3
   );
 }
 
